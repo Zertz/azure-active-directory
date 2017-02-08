@@ -36,7 +36,7 @@ AzureAd.requestCredential = function (options, credentialRequestCompleteCallback
         '&response_type=code' +
         prompt +
         '&client_id=' + config.clientId +
-        '&state=' + OAuth._stateParam(loginStyle, credentialToken) +
+        '&state=' + OAuth._stateParam(loginStyle, credentialToken, options.redirectUrl) +
         '&redirect_uri=' + OAuth._redirectUri('azureAd', config);
 
     OAuth.launchLogin({
@@ -45,6 +45,7 @@ AzureAd.requestCredential = function (options, credentialRequestCompleteCallback
         loginUrl: loginUrl,
         credentialRequestCompleteCallback: credentialRequestCompleteCallback,
         credentialToken: credentialToken,
+        redirectUrl: options.redirectUrl,
         popupOptions: { height: 600 }
     });
 };
